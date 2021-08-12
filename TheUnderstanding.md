@@ -1,5 +1,5 @@
 Kubernetes: 
-Kubernetes is an open-source container-orchestration system for automating deployment, scaling, and management of containerized applications.
+Kubernetes is an open-source container-orchestration system for automating and monitoring deployment, scaling, and managing containerized applications.
 
 Architecture: 
 A working Kubernetes deployment is called a cluster. Kubernetes cluster has two parts: the master/control plane and the compute/worker nodes.
@@ -19,21 +19,20 @@ There are different services running on both Control plane and worker nodes.
       - Endpoints Controller: Populates the Endpoints object (that is, it joins Services and Pods).
       - Service Account and Token Controllers: Create default accounts and API access tokens for new namespaces.
       - Cloud-Controller-Manager: runs controllers that interact with the underlying cloud providers. 
-   - Etcd, the cluster state database. It is Consistent and highly-available key value store used as Kubernetes' backing store for all cluster data. 
+   - Etcd, the cluster state database. It is Consistent and highly-available key-value store used as Kubernetes' backing store for all cluster data. 
    - Kube Scheduler, which schedules activities to the worker nodes based on events occurring on the etcd. 
      It also holds the nodes resources plan to determine the proper action for the triggered event. 
      It watches for newly created Pods with no assigned node, and selects a node for them to run on.
      Factors taken into account for scheduling decisions include: individual and collective resource requirements, hardware/software/policy constraints, 
      affinity and anti-affinity specifications, data locality, inter-workload interference, and deadlines.
 
-
  - Worker Node:
    - Kubelet: An agent that runs on each node in the cluster. It makes sure that containers are running in a Pod.
      The kubelet takes a set of PodSpecs that are provided through various mechanisms and ensures that the containers described in those PodSpecs are running and healthy. 
      The kubelet doesn't manage containers which were not created by Kubernetes.
    - Kube-proxy: kube-proxy is a network proxy that runs on each node in your cluster, implementing part of the Kubernetes Service concept.
-     kube-proxy maintains network rules on nodes. These network rules allow network communication to your Pods from network sessions inside or outside of your cluster.
-     kube-proxy uses the operating system packet filtering layer if there is one and it's available. Otherwise, kube-proxy forwards the traffic itself.
+     It maintains network rules on nodes. These network rules allow network communication to your Pods from network sessions inside or outside of your cluster.
+     It uses the operating system packet filtering layer if there is one and it's available. Otherwise, kube-proxy forwards the traffic itself.
    - Container runtime: The container runtime is the software that is responsible for running containers.
      Kubernetes supports several container runtimes: Docker, containerd, CRI-O, and any implementation of the Kubernetes CRI (Container Runtime Interface).
 
